@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //Schema::dropIfExists('users');
         Schema::create('users', function (Blueprint $table) {
             $table->integerIncrements('id');
             $table->string('name');
             $table->string('company')->nullable();
             $table->unsignedInteger('country_id')->index()->nullable();
             $table->foreign('country_id')->references('id')->on('countries');
+            $table->unsignedInteger('job_id')->index()->nullable();
+            $table->foreign('job_id')->references('id')->on('jobs');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

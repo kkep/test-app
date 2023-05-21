@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('departments', function (Blueprint $table) {
             $table->integerIncrements('id');
             $table->string('name')->unique();
-            $table->longText('created_at')->useCurrent();
-            $table->timestamp('failed_at');
+            $table->timestamp('created_at')->default('now()')->useCurrent();
+            $table->timestamp('failed_at')->nullable();
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('departments');
     }
 };

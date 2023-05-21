@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class AuthController extends Controller
 {
@@ -17,7 +19,7 @@ class AuthController extends Controller
 //        ]);
 //    }
 
-    public function login(Request $request): RedirectResponse
+    public function login(Request $request): RedirectResponse | Response
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],

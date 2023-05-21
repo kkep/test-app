@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('jobs', function (Blueprint $table) {
-            $table->smallIncrements('id');
+            $table->integerIncrements('id');
             $table->string('name');
             $table->unsignedInteger('department_id');
             $table->foreign('department_id')->references('id')->on('departments');
-            $table->longText('created_at')->useCurrent();
-            $table->timestamp('failed_at');
+            $table->timestamp('created_at')->default('now()')->useCurrent();
+            $table->timestamp('failed_at')->nullable();
         });
     }
 

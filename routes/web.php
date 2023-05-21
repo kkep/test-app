@@ -14,18 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/welcome', function () {
-    return view('welcome');
-});
-
-Route::get('/login', function () {
-    return view('login');
+    return redirect('login');
 });
 
 Route::get('/profile', [\App\Http\Controllers\UserController::class, 'profile']);
-
-Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
-Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
+Route::post('/auth', [\App\Http\Controllers\AuthController::class, 'login']);
+Route::get('/login', [\App\Http\Controllers\UserController::class, 'login']);
+Route::post('/save', [\App\Http\Controllers\UserController::class, 'save']);
+Route::get('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
